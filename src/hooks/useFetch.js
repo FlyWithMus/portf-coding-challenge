@@ -3,9 +3,10 @@ import { useState, useEffect } from "react";
 const useFetch = (brewedAfter, brewedBefore, currentPage, setCurrentPage) => {
   const [data, setData] = useState([]);
   const [error, setError] = useState("");
+  var [currentPage, setCurrentPage] = useState(currentPage);
 
   useEffect(() => {
-    const fetchData = async (e) => {
+    const fetchData = async () => {
       try {
         // e.preventDefault();
         console.log("fetching");
@@ -22,7 +23,8 @@ const useFetch = (brewedAfter, brewedBefore, currentPage, setCurrentPage) => {
         if (body.length === 80) {
           setCurrentPage((currentPage += 1));
         }
-        console.log("despues de fetch, currentPage:", currentPage);
+        console.log("after fetching, currentPage:", currentPage);
+
         if (!res.ok) {
           throw new Error(body.error);
         }
@@ -32,7 +34,7 @@ const useFetch = (brewedAfter, brewedBefore, currentPage, setCurrentPage) => {
       }
     };
     fetchData();
-  }, [currentPage]);
+  }, [currentPage, brewedAfter, brewedBefore]);
 
   console.log(data);
   return { data, error };

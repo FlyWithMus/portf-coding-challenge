@@ -2,6 +2,7 @@ import { useState } from "react";
 
 import BeersData from "./BeersData";
 
+/**It currently only fetchs data the first time you click on Submit */
 const Main = () => {
   const [brewedAfter, setBrewedAfter] = useState("");
   const [brewedBefore, setBrewedBefore] = useState("");
@@ -16,7 +17,8 @@ const Main = () => {
       </p>
 
       <form
-        onSubmit={() => {
+        onSubmit={(e) => {
+          e.preventDefault();
           setCurrentPage(1);
         }}
       >
