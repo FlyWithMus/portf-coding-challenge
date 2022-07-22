@@ -1,13 +1,9 @@
 import { useState } from "react";
 
-// import BeersData from "./BeersData";
-
-/**It currently only fetchs data the first time you click on Submit */
 const Main = () => {
   const [brewedAfter, setBrewedAfter] = useState("");
   const [brewedBefore, setBrewedBefore] = useState("");
   const [data, setData] = useState([]);
-  // var [currentPage, setCurrentPage] = useState(1);
 
   const functionData = (e) => {
     let currentPage = 1;
@@ -70,16 +66,6 @@ const Main = () => {
         />
         <button type="submit">submit</button>
       </form>
-      {/* {currentPage === 1 ? (
-        <BeersData
-          brewedAfter={brewedAfter}
-          brewedBefore={brewedBefore}
-          currentPage={currentPage}
-          setCurrentPage={setCurrentPage}
-        />
-      ) : (
-        <p>No data to show</p>
-      )} */}
     </>
   );
 };
