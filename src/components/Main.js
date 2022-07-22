@@ -27,7 +27,7 @@ const Main = () => {
           console.log("Fetching is finished. Data:", data);
           return data;
         } else {
-          setData(...data, body);
+          setData([...data, body]);
           currentPage = currentPage + 1;
           console.log(data);
           fetchData();
