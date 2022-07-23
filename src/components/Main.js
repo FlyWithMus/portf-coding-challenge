@@ -24,7 +24,7 @@ const Main = () => {
           console.log("Fetching is finished. Data:", totalData);
           setBeers(totalData);
         } else {
-          totalData = [...totalData, body];
+          totalData = [...totalData, ...body];
           currentPage = currentPage + 1;
           console.log(totalData);
           fetchData();
@@ -70,7 +70,7 @@ const Main = () => {
       </form>
       {beers.length > 1 ? (
         <>
-          <p>{beers[0][0].name}</p>
+          <p>{beers[0].name}</p>
           <p>{beers.length}</p>
         </>
       ) : (
