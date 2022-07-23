@@ -3,10 +3,11 @@ import { useState } from "react";
 const Main = () => {
   const [brewedAfter, setBrewedAfter] = useState("");
   const [brewedBefore, setBrewedBefore] = useState("");
-  const [data, setData] = useState([]);
-
+  const [beers, setBeers] = useState([]);
+  let totalData = [];
   const functionData = (e) => {
     let currentPage = 1;
+
     e.preventDefault();
     const fetchData = async () => {
       try {
@@ -20,12 +21,12 @@ const Main = () => {
         console.log(body);
 
         if (body.length === 0) {
-          console.log("Fetching is finished. Data:", data);
-          return data;
+          console.log("Fetching is finished. Data:", totalData);
+          setBeers(totalData);
         } else {
-          setData([...data, body]);
+          totalData = [...totalData, body];
           currentPage = currentPage + 1;
-          console.log(data);
+          console.log(totalData);
           fetchData();
         }
         if (!res.ok) {
@@ -35,6 +36,7 @@ const Main = () => {
         console.log(error);
       }
     };
+    console.log("hi, I'm callling!");
     fetchData();
   };
 
@@ -66,6 +68,14 @@ const Main = () => {
         />
         <button type="submit">submit</button>
       </form>
+      {beers.length > 1 ? (
+        <>
+          <p>{beers[0][0].name}</p>
+          <p>{beers.length}</p>
+        </>
+      ) : (
+        <p> no data to show</p>
+      )}
     </>
   );
 };
