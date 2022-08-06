@@ -243,6 +243,7 @@ const sortData = (beersData) => {
       first_brewed: beersData[i].first_brewed,
       month: +beersData[i].first_brewed.split("/")[0],
       year: +beersData[i].first_brewed.split("/")[1],
+      nameColor: "hsl(256, 70%, 50%)",
     };
   }
 

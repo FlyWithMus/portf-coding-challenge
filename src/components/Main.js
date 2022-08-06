@@ -1,4 +1,6 @@
 import { useState } from "react";
+import MyResponsiveBar from "./Chart";
+import sortData from "../helpers/sortingData";
 
 const Main = () => {
   const [brewedAfter, setBrewedAfter] = useState("");
@@ -22,7 +24,9 @@ const Main = () => {
 
         if (body.length === 0) {
           console.log("Fetching is finished. Data:", totalData);
-          setBeers(totalData);
+
+          const sortedBeerArray = sortData(totalData);
+          setBeers(sortedBeerArray);
         } else {
           totalData = [...totalData, ...body];
           currentPage = currentPage + 1;
@@ -72,6 +76,10 @@ const Main = () => {
         <>
           <p>{beers[0].name}</p>
           <p>{beers.length}</p>
+          <div style={{ height: 500 }}>
+            {" "}
+            <MyResponsiveBar beers={beers}></MyResponsiveBar>
+          </div>
         </>
       ) : (
         <p> no data to show</p>
